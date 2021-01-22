@@ -119,6 +119,7 @@ public class ReaderPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private static final float READER_FEATURED_IMAGE_ASPECT_RATIO = 16 / 9f;
 
     private boolean mIsMainReader;
+    private boolean mIsFiltered;
 
     @Inject AccountStore mAccountStore;
     @Inject SiteStore mSiteStore;
@@ -471,7 +472,8 @@ public class ReaderPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                         onPostHeaderClicked,
                         onTagItemClicked,
                         showMoreMenu ? mReaderPostMoreButtonUiStateBuilder
-                                .buildMoreMenuItemsBlocking(post, postListType, onButtonClicked) : null
+                                .buildMoreMenuItemsBlocking(post, postListType, onButtonClicked) : null,
+                        mIsFiltered
                 );
         holder.onBind(uiState);
     }
@@ -494,7 +496,8 @@ public class ReaderPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             ReaderPostListType postListType,
             ImageManager imageManager,
             UiHelpers uiHelpers,
-            boolean isMainReader
+            boolean isMainReader,
+            boolean isFiltered
     ) {
         super();
         ((WordPress) context.getApplicationContext()).component().inject(this);
@@ -503,6 +506,7 @@ public class ReaderPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         mUiHelpers = uiHelpers;
         mAvatarSzSmall = context.getResources().getDimensionPixelSize(R.dimen.avatar_sz_small);
         mIsMainReader = isMainReader;
+        mIsFiltered = isFiltered;
 
         int displayWidth = DisplayUtils.getDisplayPixelWidth(context);
         int cardMargin = context.getResources().getDimensionPixelSize(R.dimen.reader_card_margin);

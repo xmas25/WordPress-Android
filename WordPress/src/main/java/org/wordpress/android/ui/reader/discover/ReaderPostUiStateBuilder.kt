@@ -119,7 +119,8 @@ class ReaderPostUiStateBuilder @Inject constructor(
         onVideoOverlayClicked: (Long, Long) -> Unit,
         onPostHeaderViewClicked: (Long, Long) -> Unit,
         onTagItemClicked: (String) -> Unit,
-        moreMenuItems: List<SecondaryAction>? = null
+        moreMenuItems: List<SecondaryAction>? = null,
+        isFiltered: Boolean = false
     ): ReaderPostUiState {
         return ReaderPostUiState(
                 postId = post.postId,
@@ -136,7 +137,7 @@ class ReaderPostUiStateBuilder @Inject constructor(
                 expandableTagsViewVisibility = buildExpandedTagsViewVisibility(post, isDiscover),
                 videoOverlayVisibility = buildVideoOverlayVisibility(post),
                 featuredImageVisibility = buildFeaturedImageVisibility(post),
-                moreMenuVisibility = accountStore.hasAccessToken() && postListType == ReaderPostListType.TAG_FOLLOWED,
+                moreMenuVisibility = accountStore.hasAccessToken() && (postListType == ReaderPostListType.TAG_FOLLOWED || (isFiltered && postListType == ReaderPostListType.BLOG_PREVIEW)),
                 moreMenuItems = moreMenuItems,
                 fullVideoUrl = buildFullVideoUrl(post),
                 discoverSection = buildDiscoverSection(post, onDiscoverSectionClicked),

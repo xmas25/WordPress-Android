@@ -199,6 +199,7 @@ public class ReaderPostListFragment extends ViewPagerFragment
     private boolean mWasPaused;
     private boolean mHasUpdatedPosts;
     private boolean mIsAnimatingOutNewPostsBar;
+    private boolean mIsFiltered;
 
     private static boolean mHasPurgedReaderDb;
 
@@ -656,6 +657,7 @@ public class ReaderPostListFragment extends ViewPagerFragment
             mCurrentTag = readerModeInfo.getTag();
         }
 
+        mIsFiltered = readerModeInfo.isFiltered();
         mPostListType = readerModeInfo.getListType();
         mCurrentBlogId = readerModeInfo.getBlogId();
         mCurrentFeedId = readerModeInfo.getFeedId();
@@ -1936,7 +1938,8 @@ public class ReaderPostListFragment extends ViewPagerFragment
                     getPostListType(),
                     mImageManager,
                     mUiHelpers,
-                    mIsTopLevel
+                    mIsTopLevel,
+                    mIsFiltered
             );
             mPostAdapter.setOnFollowListener(this);
             mPostAdapter.setOnPostSelectedListener(this);
