@@ -63,7 +63,7 @@ if (localBuilds.exists()) {
             name = "react-native-bridge"
             dependencySubstitution {
                 println "Substituting gutenberg-mobile with the local build"
-                substitute module("$gradle.ext.gutenbergMobileBinaryPath") with project(':')
+                substitute module("$gradle.ext.gutenbergMobileBinaryPath") with project(':react-native-bridge')
             }
         }
     }
