@@ -25,8 +25,6 @@ buildscript {
 
 apply plugin: 'com.automattic.android.fetchstyle'
 
-project.ext.buildGutenbergFromSource = true
-
 allprojects {
     apply plugin: 'checkstyle'
 
