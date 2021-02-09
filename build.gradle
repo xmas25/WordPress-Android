@@ -25,6 +25,8 @@ buildscript {
 
 apply plugin: 'com.automattic.android.fetchstyle'
 
+project.ext.buildGutenbergFromSource = true
+
 allprojects {
     apply plugin: 'checkstyle'
 
@@ -33,7 +35,16 @@ allprojects {
         jcenter()
         maven { url "https://dl.bintray.com/wordpress-mobile/maven" }
         maven { url "https://jitpack.io" }
-        maven { url "https://dl.bintray.com/wordpress-mobile/react-native-mirror/" }
+            // nested RN libraries need the RN maven repo defined from outside so, do it here when building from source
+
+        //TODO: Necessary for build from source
+            maven {
+                // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+                url "$rootDir/../gutenberg-mobile/gutenberg/node_modules/react-native/android"
+            }
+
+        //TODO: necessary for binary build
+        //maven { url "https://dl.bintray.com/wordpress-mobile/react-native-mirror/" }
 
         flatDir {
             dirs '../aars'
