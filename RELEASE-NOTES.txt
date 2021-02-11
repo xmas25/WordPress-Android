@@ -2,7 +2,7 @@
 
 16.8
 -----
-
+* [*] Starter Page Templates: Adds the option to choose between mobile, tablet or desktop thumbnails and previews
 
 16.7
 -----
