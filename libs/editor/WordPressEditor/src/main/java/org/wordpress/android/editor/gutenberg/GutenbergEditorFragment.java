@@ -284,6 +284,11 @@ public class GutenbergEditorFragment extends EditorFragmentAbstract implements
                     }
 
                     @Override
+                    public void onSetFeaturedImageButtonClicked(int mediaId) {
+                        showFeaturedImageConfirmationDialog(mediaId);
+                    }
+
+                    @Override
                     public ArrayList<MediaOption> onGetOtherMediaImageOptions() {
                         ArrayList<MediaOption> otherMediaImageOptions = initOtherMediaImageOptions();
                         return otherMediaImageOptions;
@@ -779,6 +784,13 @@ public class GutenbergEditorFragment extends EditorFragmentAbstract implements
             }
         });
 
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void showFeaturedImageConfirmationDialog(final int mediaId) {
+        AlertDialog.Builder builder = new MaterialAlertDialogBuilder(getActivity());
+        builder.setTitle("Hello World" + mediaId);
         AlertDialog dialog = builder.create();
         dialog.show();
     }
