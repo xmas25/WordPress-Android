@@ -74,6 +74,13 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'org.wordpress:utils:1.25'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation "com.facebook.react:react-native:0.61.5"  // From node_modules
+    implementation('com.google.android.exoplayer:exoplayer:2.9.3') {
+        exclude group: 'com.android.support'
+    }
+    implementation('com.google.android.exoplayer:extension-okhttp:2.9.3') {
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+    }
 
     api ("com.github.wordpress-mobile.WordPress-Aztec-Android:aztec:$aztecVersion") {
         exclude group: "com.android.volley"
